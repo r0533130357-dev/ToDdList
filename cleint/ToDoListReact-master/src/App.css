@@ -1,0 +1,287 @@
+/* ===== CSS Reset & Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #43a047 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  direction: rtl;
+}
+
+#root {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ===== Main Container ===== */
+.todoapp {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Header Section ===== */
+.header {
+  background: linear-gradient(135deg, #5e72e4 0%, #48bb78 100%);
+  padding: 40px 30px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #38b2ac, #4299e1, #38b2ac);
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 25px;
+  letter-spacing: -2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Input Form ===== */
+.header form {
+  position: relative;
+}
+
+.new-todo {
+  width: 100%;
+  padding: 18px 25px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  color: #2d3748;
+}
+
+.new-todo::placeholder {
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.new-todo:focus {
+  background: #ffffff;
+  box-shadow: 0 6px 25px rgba(72, 187, 120, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===== Main Todo List Section ===== */
+.main {
+  padding: 25px 30px 30px;
+  background: #f7fafc;
+}
+
+.todo-list {
+  list-style: none;
+}
+
+/* ===== Individual Todo Item ===== */
+.todo-list li {
+  background: #ffffff;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.todo-list li:hover {
+  box-shadow: 0 4px 16px rgba(72, 187, 120, 0.15);
+  transform: translateX(-3px);
+}
+
+.todo-list li.completed {
+  opacity: 0.6;
+  background: #f0fff4;
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  gap: 15px;
+}
+
+/* ===== Custom Checkbox ===== */
+.toggle {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid #cbd5e0;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggle:hover {
+  border-color: #48bb78;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+}
+
+.toggle:checked {
+  background: linear-gradient(135deg, #48bb78, #38b2ac);
+  border-color: #48bb78;
+}
+
+.toggle:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== Todo Label ===== */
+.view label {
+  flex: 1;
+  font-size: 1.05rem;
+  color: #2d3748;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1.5;
+}
+
+.completed .view label {
+  text-decoration: line-through;
+  color: #a0aec0;
+}
+
+/* ===== Delete Button ===== */
+.destroy {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.destroy::before,
+.destroy::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2.5px;
+  background: #cbd5e0;
+  transition: all 0.3s ease;
+}
+
+.destroy::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.destroy::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.destroy:hover {
+  background: #fed7d7;
+}
+
+.destroy:hover::before,
+.destroy:hover::after {
+  background: #e53e3e;
+}
+
+/* ===== Empty State ===== */
+.todo-list:empty::before {
+  content: 'אין משימות עדיין... הוסף משימה חדשה! 🎯';
+  display: block;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 1.1rem;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .new-todo {
+    font-size: 1rem;
+    padding: 16px 20px;
+  }
+  
+  .main {
+    padding: 20px 20px 25px;
+  }
+  
+  .view {
+    padding: 15px 16px;
+  }
+  
+  .view label {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== Smooth Scrolling ===== */
+.todo-list {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f7fafc;
+}
+
+.todo-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+  background: #f7fafc;
+  border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
