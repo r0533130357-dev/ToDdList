@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import service from './service.js';
 import './App.css';
+
 function App() {
   const [newTodo, setNewTodo] = useState("");
   const [todos, setTodos] = useState([]);
@@ -17,11 +18,10 @@ function App() {
     await getTodos();//refresh tasks list (in order to see the new one)
   }
 
-
   async function updateCompleted(todo, isComplete) {
-  await service.setCompleted(todo, isComplete);
-  await getTodos();
-}
+    await service.setCompleted(todo, isComplete);
+    await getTodos();
+  }
 
   async function deleteTodo(id) {
     await service.deleteTask(id);
@@ -36,6 +36,7 @@ function App() {
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
+        <h2 className="subtitle">המשימות שלי</h2>
         <form onSubmit={createTodo}>
           <input className="new-todo" placeholder="Well, let's take on the day" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
         </form>
@@ -51,12 +52,11 @@ function App() {
                   <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
                 </div>
               </li>
-
             );
           })}
         </ul>
       </section>
-    </section >
+    </section>
   );
 }
 
